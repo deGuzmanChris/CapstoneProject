@@ -36,7 +36,7 @@ public class playermovement : MonoBehaviour
     private void Jump()//this will let player jump only if grounded is true
     {
         grounded = false;
-        body.AddForce(new Vector2(0, 200));
+        body.AddForce(new Vector2(0, 300));
         
     }
     private void OnCollisionEnter2D(Collision2D collision)//this will check if player is on the ground and will return true if player is touching the ground
