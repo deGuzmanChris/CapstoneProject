@@ -4,11 +4,14 @@ public class playermovement : MonoBehaviour
 {
     private Rigidbody2D body;
     private bool grounded;
+    private Vector2 respawnPoint;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        // Respawn point initialized (checkpoints included)
+        respawnPoint = transform.position;
     }
 
     // Update is called once per frame
@@ -47,4 +50,17 @@ public class playermovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)//This is for the deathzone collision when player falls off of a platform
+    {
+        if (other.CompareTag("DeathZone"))
+        {
+            transform.position = respawnPoint;
+            Debug.Log("Player fell off the map! Respawning...");
+        }
+        else if (other.CompareTag("Checkpoint"))
+        {
+            respawnPoint = other.transform.position;//Updates new spawn point (checkpoint)
+            Debug.Log("Checkpoint reached!");
+        }
+    }
 }
