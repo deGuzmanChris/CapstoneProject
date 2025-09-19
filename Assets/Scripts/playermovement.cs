@@ -5,6 +5,7 @@ public class playermovement : MonoBehaviour
     private Rigidbody2D body;
     private bool grounded;
     private Vector2 respawnPoint;
+    private int coinCount = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -50,8 +51,17 @@ public class playermovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)// This is for the deathzone collision when player falls off of a platform
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        // Triggers when player picks up a coin and counts it each time. Disappears once collected
+        if (other.CompareTag("Collectible"))
+        {
+            coinCount++;
+            Destroy(other.gameObject);
+            Debug.Log("Coins: " + coinCount);
+        }
+
+        // Deathzone triggers when player falls off of a platform
         if (other.CompareTag("DeathZone"))
         {
             transform.position = respawnPoint;
@@ -59,8 +69,23 @@ public class playermovement : MonoBehaviour
         }
         else if (other.CompareTag("Checkpoint"))
         {
-            respawnPoint = other.transform.position;// Updates new spawn point (checkpoint)
+            // Updates new spawn point (checkpoint)
+            respawnPoint = other.transform.position;
             Debug.Log("Checkpoint reached!");
         }
     }
+
+    public void BuyPotion()
+    {
+        if (coinCount >= 5) // Potion costs 5 coins
+        {
+            coinCount -= 5;
+            Debug.Log("Potion has been purchased! Only " + coinCount + "left");
+        }
+        else
+        {
+            Debug.Log("You need more coins!");
+        }
+    }
+
 }
