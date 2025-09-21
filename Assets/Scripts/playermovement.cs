@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class playermovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D body;
     private bool grounded;
@@ -24,7 +24,8 @@ public class playermovement : MonoBehaviour
         }
         else if (horizontalInput < -0.01f)//moves left
         {
-            transform.localScale = new Vector3(-2, 2, 2);
+            Flip();
+            transform.localScale = new Vector3(2, 2, 2);
         }
         //makes player jump
         if (Input.GetKeyDown(KeyCode.W) && grounded)
@@ -46,5 +47,8 @@ public class playermovement : MonoBehaviour
             grounded =true;
         }
     }
-
+    private void Flip()
+    {
+        transform.Rotate(0, 180, 0);
+    }
 }
