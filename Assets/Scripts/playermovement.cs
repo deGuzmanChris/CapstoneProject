@@ -1,18 +1,14 @@
 using UnityEngine;
 
-public class Playermovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D body;
     private bool grounded;
-    private Vector2 respawnPoint;
-    private int coinCount = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        // Respawn point initialized (checkpoints included)
-        respawnPoint = transform.position;
     }
 
     // Update is called once per frame
@@ -36,56 +32,18 @@ public class Playermovement : MonoBehaviour
             Jump();
         }
     }
-    
+
     private void Jump()// This will let player jump only if grounded is true
     {
         grounded = false;
         body.AddForce(new Vector2(0, 300));
-        
     }
+
     private void OnCollisionEnter2D(Collision2D collision)// This will check if player is on the ground and will return true if player is touching the ground
     {
         if (collision.gameObject.tag == "Ground")
         {
-            grounded =true;
+            grounded = true;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // Triggers when player picks up a coin and counts it each time. Disappears once collected
-        if (other.CompareTag("Collectible"))
-        {
-            coinCount++;
-            Destroy(other.gameObject);
-            Debug.Log("Coins: " + coinCount);
-        }
-
-        // Deathzone triggers when player falls off of a platform
-        if (other.CompareTag("DeathZone"))
-        {
-            transform.position = respawnPoint;
-            Debug.Log("Player fell off the map! Respawning...");
-        }
-        else if (other.CompareTag("Checkpoint"))
-        {
-            // Updates new spawn point (checkpoint)
-            respawnPoint = other.transform.position;
-            Debug.Log("Checkpoint reached!");
-        }
-    }
-
-    public void BuyPotion()
-    {
-        if (coinCount >= 5) // Potion costs 5 coins
-        {
-            coinCount -= 5;
-            Debug.Log("Potion has been purchased! Only " + coinCount + "left");
-        }
-        else
-        {
-            Debug.Log("You need more coins!");
-        }
-    }
-
 }
