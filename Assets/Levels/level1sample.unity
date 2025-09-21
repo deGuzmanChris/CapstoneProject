@@ -974,6 +974,7 @@ GameObject:
   - component: {fileID: 1238452135}
   - component: {fileID: 1238452134}
   - component: {fileID: 1238452138}
+  - component: {fileID: 1238452139}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -1134,6 +1135,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a040ee8b1d56a12489f7b03015775940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1238452139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238452133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba8a1038af9f81429541a7cb0c32895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1459124085
@@ -1724,17 +1737,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1188128415137721641, guid: 67b79762f3b7d5245a0711b744d20b3c, type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1466495700298309341, guid: 67b79762f3b7d5245a0711b744d20b3c, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2337077842648900624, guid: 67b79762f3b7d5245a0711b744d20b3c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.39
+      value: -0.76
       objectReference: {fileID: 0}
     - target: {fileID: 2337077842648900624, guid: 67b79762f3b7d5245a0711b744d20b3c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.36
+      value: -2.396
       objectReference: {fileID: 0}
     - target: {fileID: 2337077842648900624, guid: 67b79762f3b7d5245a0711b744d20b3c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1767,6 +1784,30 @@ PrefabInstance:
     - target: {fileID: 2337077842648900624, guid: 67b79762f3b7d5245a0711b744d20b3c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961606726396883240, guid: 67b79762f3b7d5245a0711b744d20b3c, type: 3}
+      propertyPath: m_Constraints
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961606726396883240, guid: 67b79762f3b7d5245a0711b744d20b3c, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412416406261568983, guid: 67b79762f3b7d5245a0711b744d20b3c, type: 3}
+      propertyPath: m_Size.x
+      value: 0.19810754
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412416406261568983, guid: 67b79762f3b7d5245a0711b744d20b3c, type: 3}
+      propertyPath: m_Size.y
+      value: 0.18720815
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412416406261568983, guid: 67b79762f3b7d5245a0711b744d20b3c, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.00528704
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412416406261568983, guid: 67b79762f3b7d5245a0711b744d20b3c, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.06930013
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
