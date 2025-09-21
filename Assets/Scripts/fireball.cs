@@ -11,7 +11,7 @@ public class fireball : MonoBehaviour
     public GameObject impactEffect;
 
     //Makes the fireball go in the direction it is facing.
-    void Start()
+    public void Start()
     {
         rb.linearVelocity = transform.right * speed;
     }

@@ -20,12 +20,11 @@ public class PlayerMovement : MonoBehaviour
         //flips player sprite based on direction
         if (horizontalInput > 0.01f)//moves right
         {
-            transform.localScale = new Vector3(2, 2, 2);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (horizontalInput < -0.01f)//moves left
         {
-            Flip();
-            transform.localScale = new Vector3(2, 2, 2);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         //makes player jump
         if (Input.GetKeyDown(KeyCode.W) && grounded)
@@ -47,8 +46,5 @@ public class PlayerMovement : MonoBehaviour
             grounded =true;
         }
     }
-    private void Flip()
-    {
-        transform.Rotate(0, 180, 0);
-    }
+  
 }
