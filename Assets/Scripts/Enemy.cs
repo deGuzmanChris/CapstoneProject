@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy2D : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [Header("Health")]
     public float maxHealth = 10f;
@@ -15,7 +15,7 @@ public class Enemy2D : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(2f); // enemy loses 20 HP each time you press space
+            TakeDamage(2f); // enemy loses 2 HP each time player presses a key input: 'Spacebar'
         }
     }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class playermovement : MonoBehaviour
+public class Playermovement : MonoBehaviour
 {
     private Rigidbody2D body;
     private bool grounded;
