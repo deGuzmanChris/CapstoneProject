@@ -665,7 +665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1210885569}
   m_Layer: 0
-  m_Name: firepoint
+  m_Name: firePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -699,6 +699,7 @@ GameObject:
   - component: {fileID: 1238452135}
   - component: {fileID: 1238452134}
   - component: {fileID: 1238452138}
+  - component: {fileID: 1238452139}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -862,6 +863,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a040ee8b1d56a12489f7b03015775940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1238452139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238452133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56b09955123ad14b818a15c87d9de3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 1210885569}
+  fireballPrefab: {fileID: 758336496630708686, guid: 32f5eded45f31f043992154594d168ef, type: 3}
 --- !u!1 &1893118347
 GameObject:
   m_ObjectHideFlags: 0
