@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         //moves player left and right
-        body.linearVelocity = new Vector2(horizontalInput * 10, body.linearVelocityY);
+        body.linearVelocity = new Vector2(horizontalInput * 5, body.linearVelocityY);
         //flips player sprite based on direction
         if (horizontalInput > 0.01f)//moves right
         {
