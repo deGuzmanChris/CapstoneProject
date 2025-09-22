@@ -6,16 +6,19 @@ public class healingPotion : items
     //Amount the potion heals
     int healAmount = 5;
 
-    public void Heal()
+    void Update()
     {
-        //Gets player object
-        playerTotalStatsGetter statsGetter = new playerTotalStatsGetter();
-        //Gets HP value into an int
-        int currentHP = statsGetter.GetTotalHP();
-        //Adds heal amount to current HP
-        int healedHP = currentHP + healAmount;
-        
-        //Sets player HP to new healed amount
-        totalPlayerStats player = GameObject.GetComponent<totalPlayerStats>();
+        if (Input.GetButtonDown("Fire1") && Time.time > nextFireball)
+        {
+            //Gets player object
+            playerTotalStatsGetter statsGetter = new playerTotalStatsGetter();
+            //Gets HP value into an int
+            int currentHP = statsGetter.GetTotalHP();
+            //Adds heal amount to current HP
+            int healedHP = currentHP + healAmount;
+
+            //Sets player HP to new healed amount
+            totalPlayerStats player = GameObject.GetComponent<totalPlayerStats>();
+        }
     }
 }
