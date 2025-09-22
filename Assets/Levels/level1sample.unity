@@ -381,7 +381,7 @@ Transform:
   m_GameObject: {fileID: 208618794}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.19, y: -1.45, z: 0}
+  m_LocalPosition: {x: 6.74, y: -2.36, z: 0}
   m_LocalScale: {x: 6.94008, y: 0.7317313, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -629,8 +629,8 @@ Transform:
   m_GameObject: {fileID: 747187258}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.99, y: -2.12, z: 0}
-  m_LocalScale: {x: 2.1777043, y: 1.2542354, z: 1}
+  m_LocalPosition: {x: -10.54, y: -0.93, z: 0}
+  m_LocalScale: {x: 1.3797835, y: 5.33332, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -769,7 +769,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!1 &1210885568
+
 --- !u!1 &1007174459
+
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -777,15 +781,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+
+  - component: {fileID: 1210885569}
+  m_Layer: 0
+  m_Name: firePoint
+  m_TagString: Untagged
+
   - component: {fileID: 1007174461}
   - component: {fileID: 1007174460}
   m_Layer: 0
   m_Name: Checkpoint1
   m_TagString: Checkpoint
+
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+
+--- !u!4 &1210885569
+
 --- !u!61 &1007174460
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -833,11 +847,23 @@ BoxCollider2D:
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &1007174461
+
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+
+  m_GameObject: {fileID: 1210885568}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.087, y: -0.057, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1238452137}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
   m_GameObject: {fileID: 1007174459}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -961,6 +987,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26d9785c5d6a9a2479bd997e5687a207, type: 3}
+
 --- !u!1 &1238452133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,7 +1048,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 1, y: 2}
+    newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1041,9 +1068,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_LinearDamping: 2
+  m_AngularDamping: 0
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1104,7 +1131,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1122,7 +1149,8 @@ Transform:
   m_LocalPosition: {x: -9.17, y: -1.81, z: 0}
   m_LocalScale: {x: 2.0366, y: 2.0732, z: 2}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1210885569}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1238452138
@@ -1146,6 +1174,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1238452133}
   m_Enabled: 1
   m_EditorHideFlags: 0
+
+  m_Script: {fileID: 11500000, guid: e56b09955123ad14b818a15c87d9de3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 1210885569}
+  fireballPrefab: {fileID: 758336496630708686, guid: 32f5eded45f31f043992154594d168ef, type: 3}
+
   m_Script: {fileID: 11500000, guid: 3ba8a1038af9f81429541a7cb0c32895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1431,6 +1466,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26d9785c5d6a9a2479bd997e5687a207, type: 3}
+
 --- !u!1 &1893118347
 GameObject:
   m_ObjectHideFlags: 0
