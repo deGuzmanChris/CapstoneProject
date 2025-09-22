@@ -1,7 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using spells.spellFireball;
+using System;
 
-class scrolls //Main way of attacking, can also heal, defend, and buff.
+
+abstract class scrolls //Main way of attacking, can also heal, defend, and buff.
 {
     int ATK;
     int DEF;
