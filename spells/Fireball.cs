@@ -1,18 +1,22 @@
 using UnityEngine;
 using System.Collections;
-using System Collections;
+using System.Collections.Generic;
 
 public class spellFireball : MonoBehaviour
 {
     //References the point where the fireball appears
-    public Transform fireball;
+    public Transform firePoint;
     //What type of shot the fireball is
     public GameObject fireballPrefab;
+    //How long until next fireball
+    private float cooldown = 5f;
+    //The float to freeze the time of shot + cooldown
+    private float nextFireball = 0f;
 
     void Update()
     {
-        //Checks if the player presses the shoot button. If it does, runs Shoot script
-        if (Input.GetButtonDown("Fire1"))
+        //Checks if the player presses the shoot button and if the spell is off cooldown. If it does, runs Shoot script
+        if (Input.GetButtonDown("Fire2") && Time.time > nextFireball)
         {
             Shoot();
         }
@@ -20,8 +24,10 @@ public class spellFireball : MonoBehaviour
 
     void Shoot()
     {
-        //Makes the firabll appear from the player
-        Instantiate(fireballPrefab, fireball.position, fireball.rotation);
+        //Checks how long since the spell fired. (Time.time is a float that tracks the time since its activation)
+        nextFireball = Time.time + cooldown;
+        //Makes the fireball appear from the player
+        Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
     }
 }
 
