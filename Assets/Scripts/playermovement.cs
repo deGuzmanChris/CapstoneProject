@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D body;
     private bool grounded;
+    [SerializeField] private Animator animator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -30,6 +31,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && grounded)
         {
             Jump();
+        }
+        if (horizontalInput != 0)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
         }
     }
     
