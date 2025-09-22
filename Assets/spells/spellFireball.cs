@@ -8,11 +8,15 @@ public class spellFireball : MonoBehaviour
     public Transform firePoint;
     //What type of shot the fireball is
     public GameObject fireballPrefab;
+    //How long until next fireball
+    private float cooldown = 1f;
+    //The float to freeze the time of shot + cooldown
+    private float nextFireball = 0f;
 
     void Update()
     {
-        //Checks if the player presses the shoot button. If it does, runs Shoot script
-        if (Input.GetButtonDown("Fire1"))
+        //Checks if the player presses the shoot button and if the spell is off cooldown. If it does, runs Shoot script
+        if (Input.GetButtonDown("Fire1") && Time.time > nextFireball)
         {
             Shoot();
         }
@@ -20,6 +24,8 @@ public class spellFireball : MonoBehaviour
 
     void Shoot()
     {
+        //Checks how long since the spell fired. (Time.time is a float that tracks the time since its activation)
+        nextFireball = Time.time + cooldown;
         //Makes the fireball appear from the player
         Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
     }
@@ -40,7 +46,7 @@ public class fireballShot : MonoBehaviour
     {
         rb.linearVelocity = transform.right * speed;
     }
-    /*
+
     //Collision checker
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
@@ -56,7 +62,6 @@ public class fireballShot : MonoBehaviour
         //If it collides with target, destroys itself
         Destroy(gameObject);
     }
-    */
 }
 
 //Note: Please make the player rotate when changing directions. Or else the fireball will always go towards the right side of the screen if it is flipped.
