@@ -1,36 +1,47 @@
 using UnityEngine;
 
-public class fireball : MonoBehaviour
+public class Fireball : MonoBehaviour
 {
-    //The speed of the fireball
-    public float speed = 10f;
-    //fireball damage
-    public int damage = 5;
-    //Makes reference to the player sprite
-    public Rigidbody2D rb;
-    public GameObject impactEffect;
+    public float speed = 10f;      // Speed of the fireball
+    public float lifetime = 0.2f;    // Fireball disappears after 2 seconds 
+    public int damage = 2;         // Fireball damage to enemy
 
-    //Makes the fireball go in the direction it is facing.
-    public void Start()
+    // References the player sprite
+    private Rigidbody2D rb;
+
+    // Fireball shoots in the direction it is facing
+    void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+
+        // Fireball moves to the right of firePoint's facing direction
         rb.linearVelocity = transform.right * speed;
+
+        // Destroy automatically after lifetime
+        Destroy(gameObject, lifetime);
     }
-    /*
-    //Collision checker
-    void OnTriggerEnter2D(Collider2D hitInfo)
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        //Grabs enemy info and stores it inside a temporary object
-        Enemy enemy = hitInfo.GetComponent<Enemy>();
-        if (enemy != null)
+        // If fireball hits an enemy
+        if (other.CompareTag("Enemy"))
         {
-            //reduces health on hit
-            enemy.TakeDamage(damage);
+            // Grabs enemy info and stores it inside a temp object
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                // Reduces health on hit
+                enemy.TakeDamage(damage);
+            }
+
+            // Fireball is destroyed after hitting an enemy
+            Destroy(gameObject);
         }
 
-        Instantiate(impactEffect, transform.position, transform.rotation);
-        //If it collides with target, destroys itself
-        Destroy(gameObject);
+        // If fireball hits ground or walls
+        if (other.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
-    */
 }
-

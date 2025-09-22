@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         //moves player left and right
-        body.linearVelocity = new Vector2(horizontalInput * 10, body.linearVelocityY);
+        body.linearVelocity = new Vector2(horizontalInput * 5, body.linearVelocityY);
         //flips player sprite based on direction
         if (horizontalInput > 0.01f)//moves right
         {
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()//this will let player jump only if grounded is true
     {
         grounded = false;
-        body.AddForce(new Vector2(0, 300));
+        body.AddForce(new Vector2(0, 400));
         
     }
     private void OnCollisionEnter2D(Collision2D collision)//this will check if player is on the ground and will return true if player is touching the ground
