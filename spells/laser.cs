@@ -12,6 +12,11 @@ public class spellLaser : MonoBehaviour
     public int damage = 10;
     //References the laser shot
     public laserRenderer laserRenderer;
+    //How long until next fireball
+    private float cooldown = 10f;
+    //The float to freeze the time of shot + cooldown
+    private float nextLaser = 0f;
+
 
     void Update()
     {
@@ -25,6 +30,8 @@ public class spellLaser : MonoBehaviour
 
     IEnumerator Shoot()
     {
+        //Checks how long since the spell fired. (Time.time is a float that tracks the time since its activation)
+        nextLaser = Time.time + cooldown;
         //Makes the laser appear from the player
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
 
