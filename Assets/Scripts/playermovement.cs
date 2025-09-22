@@ -15,35 +15,37 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
-        // Moves player left and right
+        //moves player left and right
         body.linearVelocity = new Vector2(horizontalInput * 10, body.linearVelocityY);
-        // Flips player sprite based on direction
+        //flips player sprite based on direction
         if (horizontalInput > 0.01f)//moves right
         {
-            transform.localScale = new Vector3(2, 2, 2);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (horizontalInput < -0.01f)//moves left
         {
-            transform.localScale = new Vector3(-2, 2, 2);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-        // Makes player jump
+        //makes player jump
         if (Input.GetKeyDown(KeyCode.W) && grounded)
         {
             Jump();
         }
     }
-
-    private void Jump()// This will let player jump only if grounded is true
+    
+    private void Jump()//this will let player jump only if grounded is true
     {
         grounded = false;
         body.AddForce(new Vector2(0, 300));
+        
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)// This will check if player is on the ground and will return true if player is touching the ground
+    private void OnCollisionEnter2D(Collision2D collision)//this will check if player is on the ground and will return true if player is touching the ground
     {
         if (collision.gameObject.tag == "Ground")
         {
-            grounded = true;
+            grounded =true;
         }
     }
+  
 }
+//note: https://docs.unity3d.com/6000.2/Documentation/ScriptReference/Quaternion.html
