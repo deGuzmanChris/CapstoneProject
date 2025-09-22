@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class playermovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D body;
     private bool grounded;
@@ -20,11 +20,11 @@ public class playermovement : MonoBehaviour
         //flips player sprite based on direction
         if (horizontalInput > 0.01f)//moves right
         {
-            transform.localScale = new Vector3(2, 2, 2);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (horizontalInput < -0.01f)//moves left
         {
-            transform.localScale = new Vector3(-2, 2, 2);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         //makes player jump
         if (Input.GetKeyDown(KeyCode.W) && grounded)
@@ -46,5 +46,6 @@ public class playermovement : MonoBehaviour
             grounded =true;
         }
     }
-
+  
 }
+//note: https://docs.unity3d.com/6000.2/Documentation/ScriptReference/Quaternion.html
