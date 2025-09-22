@@ -9,6 +9,7 @@ TagManager:
   - Checkpoint
   - Collectible
   - Shop
+  - Enemy
   layers:
   - Default
   - TransparentFX
