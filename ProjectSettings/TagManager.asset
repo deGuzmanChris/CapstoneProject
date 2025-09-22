@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - DeathZone
+  - Checkpoint
+  - Collectible
+  - Shop
   layers:
   - Default
   - TransparentFX

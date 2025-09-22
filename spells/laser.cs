@@ -16,7 +16,7 @@ public class spellLaser : MonoBehaviour
     void Update()
     {
         //Checks if the player presses the shoot button. If it does, runs Shoot script
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire2"))
         {
             //StartCoroutine is because Shoot is an IEnumerator. IEnumerator is needed to wait a frame
             StartCoroutine(Shoot());

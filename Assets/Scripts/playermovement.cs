@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class playermovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D body;
     private bool grounded;
@@ -15,9 +15,9 @@ public class playermovement : MonoBehaviour
     private void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
-        //moves player left and right
+        // Moves player left and right
         body.linearVelocity = new Vector2(horizontalInput * 10, body.linearVelocityY);
-        //flips player sprite based on direction
+        // Flips player sprite based on direction
         if (horizontalInput > 0.01f)//moves right
         {
             transform.localScale = new Vector3(2, 2, 2);
@@ -26,25 +26,24 @@ public class playermovement : MonoBehaviour
         {
             transform.localScale = new Vector3(-2, 2, 2);
         }
-        //makes player jump
+        // Makes player jump
         if (Input.GetKeyDown(KeyCode.W) && grounded)
         {
             Jump();
         }
     }
-    
-    private void Jump()//this will let player jump only if grounded is true
+
+    private void Jump()// This will let player jump only if grounded is true
     {
         grounded = false;
         body.AddForce(new Vector2(0, 300));
-        
     }
-    private void OnCollisionEnter2D(Collision2D collision)//this will check if player is on the ground and will return true if player is touching the ground
+
+    private void OnCollisionEnter2D(Collision2D collision)// This will check if player is on the ground and will return true if player is touching the ground
     {
         if (collision.gameObject.tag == "Ground")
         {
-            grounded =true;
+            grounded = true;
         }
     }
-
 }
