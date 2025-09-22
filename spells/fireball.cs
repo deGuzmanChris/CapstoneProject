@@ -16,7 +16,7 @@ public class spellFireball : MonoBehaviour
     void Update()
     {
         //Checks if the player presses the shoot button and if the spell is off cooldown. If it does, runs Shoot script
-        if (Input.GetButtonDown("Fire1") && Time.time > nextFireball)
+        if (Input.GetButtonDown("Fire2") && Time.time > nextFireball)
         {
             Shoot();
         }

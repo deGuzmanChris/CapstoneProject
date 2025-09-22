@@ -8,7 +8,7 @@ public class healingPotion : items
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && Time.time > nextFireball)
+        if (Input.GetKeyDown(KeyCode.H))
         {
             //Gets player object
             playerTotalStatsGetter statsGetter = new playerTotalStatsGetter();
