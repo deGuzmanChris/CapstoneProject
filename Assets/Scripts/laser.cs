@@ -1,0 +1,118 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class spellLaser : MonoBehaviour
+{
+    //References the point where the laser appears
+    public Transform firePoint;
+    //Gives visuals to the laser
+    public GameObject impactEffect;
+    //Laser damage
+    public int damage = 10;
+    //References the laser shot
+    // NOTE: Changed "laserRenderer" to LineRenderer because it doesn't exist currently in Unity
+    public LineRenderer laserRenderer;
+    //How long until next fireball
+    private float cooldown = 10f;
+    //The float to freeze the time of shot + cooldown
+    private float nextLaser = 0f;
+
+    void Update()
+    {
+        //Checks if the player presses the shoot button. If it does, runs Shoot script
+        if (Input.GetButtonDown("Fire2") && Time.time > nextLaser)
+        {
+            //StartCoroutine is because Shoot is an IEnumerator. IEnumerator is needed to wait a frame
+            StartCoroutine(Shoot());
+        }
+    }
+
+    IEnumerator Shoot()
+    {
+        //Checks how long since the spell fired. (Time.time is a float that tracks the time since its activation)
+        nextLaser = Time.time + cooldown;
+        //Makes the laser appear from the player
+        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
+
+        if (hitInfo)
+        {
+            //Stores the info of the enemy on hit
+            Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
+            //Enemy takes damage
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+                Debug.Log("Laser hit enemy for " + damage + " damage!");
+            }
+
+            //On hit, gives a different effect (Quaternion means no rotation)
+            if (impactEffect != null)
+            {
+                Instantiate(impactEffect, hitInfo.point, Quaternion.identity);
+            }
+
+            //Start position of the laser
+            laserRenderer.SetPosition(0, firePoint.position);
+            //End position of laser on hit
+            laserRenderer.SetPosition(1, hitInfo.point);
+        }
+        else
+        {
+            //Start position of the laser
+            laserRenderer.SetPosition(0, firePoint.position);
+            //Makes it look like the laser goes on endlessly
+            laserRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
+        }
+
+        //Makes the laser visible
+        laserRenderer.enabled = true;
+
+        //Waits 1 frame
+        yield return new WaitForSeconds(0.02f);
+
+        //Makes the laser invisible
+        laserRenderer.enabled = false;
+
+        // Debug line (for testing without visuals)
+        Debug.DrawRay(firePoint.position, firePoint.right * 10, Color.red, 0.2f);
+    }
+}
+
+public class laserShot : MonoBehaviour
+{
+    //The speed of the 
+    public float speed = 10f;
+    //fireball damage
+    public int damage = 5;
+    //Makes reference to the player sprite
+    public Rigidbody2D rb;
+    public GameObject impactEffect;
+
+    //Makes the fireball go in the direction it is facing.
+    void Start()
+    {
+        rb.linearVelocity = transform.right * speed;
+    }
+
+    //Collision checker
+    void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        //Grabs enemy info and stores it inside a temporary object
+        Enemy enemy = hitInfo.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            //reduces health on hit
+            enemy.TakeDamage(damage);
+            Debug.Log("LaserShot hit enemy for " + damage + " damage!");
+        }
+
+        if (impactEffect != null)
+        {
+            Instantiate(impactEffect, transform.position, transform.rotation);
+        }
+
+        //If it collides with target, destroys itself
+        Destroy(gameObject);
+    }
+}
