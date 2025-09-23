@@ -1,2 +1,5 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Unity smart merge (YAML merge) for scene and prefab files
+*.unity merge=unityyamlmerge eol=lf
+*.prefab merge=unityyamlmerge eol=lf
+*.asset merge=unityyamlmerge eol=lf
+*.mat merge=unityyamlmerge eol=lf
