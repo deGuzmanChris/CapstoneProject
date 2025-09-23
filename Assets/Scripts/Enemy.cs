@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float maxHealth = 10f;
-    private float currentHealth;
+    public float maxHealth = 10f; // Enemy has 10 health points (hp)
+    private float currentHealth; // Cannot be changed manually, only changes when damage is taken
 
     // Enemy starts out with max health
     void Start()
@@ -19,13 +19,13 @@ public class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Die();
+            Die(); // Calls out Die function once enemy takes enough damage from player
         }
     }
     // Enemy is removed from the scene
     private void Die()
     {
         Debug.Log("Enemy died!");
-        Destroy(gameObject); 
+        Destroy(gameObject); // Destroys the enemy object from the scene once they die
     }
 }
