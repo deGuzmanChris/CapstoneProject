@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    private Vector2 respawnPoint; // Sets respawn point based on the position in the scene
+    private Vector2 respawnPoint;
     private int coinCount = 0;
 
     private void Start()
@@ -16,15 +16,15 @@ public class PlayerCollision : MonoBehaviour
         // Triggers when player picks up a coin and counts it each time. Disappears once collected
         if (other.CompareTag("Collectible"))
         {
-            coinCount++; // Coin count increases each time they're picked up
-            Destroy(other.gameObject); // Coin is destroyed once they're collected
+            coinCount++;
+            Destroy(other.gameObject);
             Debug.Log("Coins: " + coinCount);
         }
 
         // Deathzone triggers when player falls off of a platform
         if (other.CompareTag("DeathZone"))
         {
-            transform.position = respawnPoint; // Player respawns back to the checkpoint / last respawn point 
+            transform.position = respawnPoint;
             Debug.Log("Player fell off the map! Respawning...");
         }
         else if (other.CompareTag("Checkpoint"))
