@@ -65,4 +65,3 @@ public class fireballShot : MonoBehaviour
 }
 
 //Note: Please make the player rotate when changing directions. Or else the fireball will always go towards the right side of the screen if it is flipped.
-
