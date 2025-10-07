@@ -5,6 +5,7 @@ public class PlayerCollision : MonoBehaviour
     private Vector2 respawnPoint;
     private int coinCount = 0;
 
+    public CoinCurrency cc; 
     private void Start()
     {
         // Respawn point initialized (checkpoints included)
@@ -13,12 +14,10 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Triggers when player picks up a coin and counts it each time. Disappears once collected
+        // Triggers when player picks up a coin and counts it each time and added to coin count
         if (other.CompareTag("Collectible"))
         {
-            coinCount++;
-            Destroy(other.gameObject);
-            Debug.Log("Coins: " + coinCount);
+            cc.coinCount++;
         }
 
         // Deathzone triggers when player falls off of a platform

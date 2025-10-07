@@ -1,23 +1,31 @@
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class CoinCurrency : MonoBehaviour
 {
-    public int coins = 0; // Coin count is shown here
-
-    // Adds coins collected
+    public int coinCount = 0; // Coin count is shown here
+    public TMP_Text coinText;
+    void Start()
+    {
+        
+    }
+    void Update()
+    {
+        coinText.text = "Coins: x" + coinCount.ToString();
+    }
     public void AddCoins(int amount)
     {
-        coins += amount;
-        Debug.Log(coins + "coins");
+        coinCount += amount;
+        Debug.Log(coinCount + "coins");
     }
 
     // For buying coins in the shop
     public bool SpendCoins(int amount)
     {
-        if (coins >= amount)
+        if (coinCount >= amount)
         {
-            coins -= amount;
-            Debug.Log("Item purchased! Only " + coins + "coins left");
+            coinCount -= amount;
+            Debug.Log("Item purchased! Only " + coinCount + "coins left");
             return true;
         }
         else
@@ -26,4 +34,7 @@ public class CoinCurrency : MonoBehaviour
             return false;
         }
     }
+    
+
+
 }

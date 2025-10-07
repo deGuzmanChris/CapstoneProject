@@ -3,7 +3,7 @@ using UnityEngine;
 public class Fireball : MonoBehaviour
 {
     public float speed = 10f;      // Speed of the fireball
-    public float lifetime = 0.2f;    // Fireball disappears after 2 seconds 
+    public float lifetime = 0.5f;    // Fireball disappears after 2 seconds 
     public int damage = 2;         // Fireball damage to enemy
 
     // References the player sprite
