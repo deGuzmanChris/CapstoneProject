@@ -1,67 +1,30 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class spellFireball : MonoBehaviour
+public class throwing : MonoBehaviour
 {
-    //References the point where the fireball appears
-    public Transform firePoint;
-    //What type of shot the fireball is
-    public GameObject fireballPrefab;
-    //How long until next fireball
-    private float cooldown = 5f;
-    //The float to freeze the time of shot + cooldown
-    private float nextFireball = 0f;
+    public GameObject projectilePrefab; // Assign your projectile prefab in the Inspector
+    public Transform target; // A reference to the target
+    public float throwRate; // Time in seconds between throws
+    public float maxProjSPD; // Timer to track the projectile
+    public float projectileMaxHeight; // Maximum height of the trajectory
+    public AnimationCurve trajectoryAnimationCurve; // Animation curve for the trajectory
+    public AnimationCurve axisCorrectionAnimationCurve; // Correcting the animation curve for the trajectory
+    public AnimationCurve SPDAnimationCurve; // Animation curve for the projectile speed over time
 
-    void Update()
+    public void Update()
     {
-        //Checks if the player presses the shoot button and if the spell is off cooldown. If it does, runs Shoot script
-        if (Input.GetKeyDown(KeyCode.Q) && Time.time > nextFireball)
+        shootTimer -= Time.deltaTime;
+
+        if (shootTimer <= 0f && Input.GetKeyDown(KeyCode.Q))
         {
-            Shoot();
+            shootTimer = shootRate; // Reset the timer
+            projectilePrefab projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<projectile>();
+            projectile.InitializeProjectile(target, maxProjSPD, projectileMaxHeight);
+            projectile.InitializeAnimationCurve(trajectoryAnimationCurve, axisCorrectionAnimationCurve, SPDAnimationCurve);
         }
     }
 
-    void Shoot()
-    {
-        //Checks how long since the spell fired. (Time.time is a float that tracks the time since its activation)
-        nextFireball = Time.time + cooldown;
-        //Makes the fireball appear from the player
-        Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
-    }
+
 }
-
-public class fireballShot : MonoBehaviour
-{
-    //The speed of the fireball
-    public float speed = 10f;
-    //fireball damage
-    public int damage = 5;
-    //Makes reference to the player sprite
-    public Rigidbody2D rb;
-    public GameObject impactEffect;
-
-    //Makes the fireball go in the direction it is facing.
-    void Start()
-    {
-        rb.velocity = transform.right * speed;
-    }
-
-    //Collision checker
-    void OnTriggerEnter2D(Collider2D hitInfo)
-    {
-        //Grabs enemy info and stores it inside a temporary object
-        Enemy enemy = hitInfo.GetComponent<Enemy>();
-        if (enemy != null)
-        {
-            //reduces health on hit
-            enemy.TakeDamage(damage);
-        }
-
-        Instantiate(impactEffect, transform.position, transform.rotation);
-        //If it collides with target, destroys itself
-        Destroy(gameObject);
-    }
-}
-
-//Note: Please make the player rotate when changing directions. Or else the fireball will always go towards the right side of the screen if it is flipped.
